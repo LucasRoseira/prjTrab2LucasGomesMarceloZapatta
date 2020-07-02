@@ -22,8 +22,9 @@ public class Atendente extends Pessoa {
     tem como parâmetro de entrada o registro funcional e o nome */
     public Atendente(String nome) {
         super(nome);
+        this.quartoHotel = new ArrayList<>();
     }
-    
+
     //Método get RegFunc e Turno
     public String getRegFunc() {
         return regFunc;
@@ -38,4 +39,8 @@ public class Atendente extends Pessoa {
         this.turno = turno;
     }
 
+    //Public void addQuartoHotel
+    public void addQuaroHotel(QuartoHotel qh) {
+        quartoHotel.add(qh);
+    }
 }

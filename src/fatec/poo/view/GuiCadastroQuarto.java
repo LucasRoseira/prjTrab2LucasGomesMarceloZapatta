@@ -17,8 +17,9 @@ public class GuiCadastroQuarto extends javax.swing.JFrame {
     /**
      * Creates new form GuiCadastroQuarto
      */
-    public GuiCadastroQuarto(ArrayList<QuartoHotel> hotel) {
+    public GuiCadastroQuarto(ArrayList<QuartoHotel> h) {
         initComponents();
+        hotel = h;
     }
 
     /**
@@ -46,11 +47,26 @@ public class GuiCadastroQuarto extends javax.swing.JFrame {
         lblValorDiaria.setText("Valor Diária");
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnInserir.setText("Inserir");
         btnInserir.setEnabled(false);
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         txtValorDiaria.setEnabled(false);
 
@@ -96,6 +112,61 @@ public class GuiCadastroQuarto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+        int x;
+        for (x = 0; x < hotel.size(); x++) {
+            if (hotel.get(x) instanceof QuartoHotel
+                    && hotel.get(x).getNumQuarto()
+                    == Integer.parseInt(txtNumQuarto.getText())) {
+                break;
+            }
+        }
+
+        if (x < hotel.size()) {
+            posQuarto = x; //localizou o objeto Hotel no ArrayList
+        } else {
+            posQuarto = -1;//não localizou o objeto Hotel no ArrayList
+        }
+
+        if (posQuarto >= 0) {
+            txtNumQuarto.setText(String.valueOf(hotel.get(posQuarto).getNumQuarto()));
+            txtValorDiaria.setText(String.valueOf(hotel.get(posQuarto).getValorDiaria()));
+
+            btnConsultar.setEnabled(false);
+            btnInserir.setEnabled(false);
+        } else {
+            txtNumQuarto.setEnabled(true);
+            txtValorDiaria.setEnabled(true);
+
+            btnConsultar.setEnabled(false);
+            btnInserir.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        // TODO add your handling code here:
+
+        //instanciação do objeto da classe QuartoHotel
+        QuartoHotel hot = new QuartoHotel(Integer.parseInt(txtNumQuarto.getText()),
+                Integer.parseInt(txtValorDiaria.getText()));
+
+        //inserindo o quarto no ArrayList
+        hotel.add(hot);
+
+        txtNumQuarto.setText(null);
+        txtValorDiaria.setText(null);
+        txtValorDiaria.setEnabled(false);
+        
+        btnConsultar.setEnabled(true);
+        btnInserir.setEnabled(false);
+    }//GEN-LAST:event_btnInserirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -109,4 +180,6 @@ public class GuiCadastroQuarto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNumQuarto;
     private javax.swing.JTextField txtValorDiaria;
     // End of variables declaration//GEN-END:variables
+    private ArrayList<QuartoHotel> hotel;
+    private int posQuarto;
 }

@@ -123,6 +123,11 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
         btnAlterar.setEnabled(false);
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         btnInserir.setText("Inserir");
         btnInserir.setEnabled(false);
@@ -206,6 +211,11 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
     private void txtRegFuncionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegFuncionalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRegFuncionalActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
