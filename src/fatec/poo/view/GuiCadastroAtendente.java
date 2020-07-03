@@ -10,15 +10,17 @@ import java.util.ArrayList;
 
 /**
  *
- * @author lucas_000
+ * @author roseira && zapatta
  */
 public class GuiCadastroAtendente extends javax.swing.JFrame {
 
     /**
      * Creates new form GuiCadastroCliente
      */
-    public GuiCadastroAtendente(ArrayList<Atendente> atendentes) {
+    public GuiCadastroAtendente(ArrayList<Atendente> at) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        atendente = at;
     }
 
     /**
@@ -49,8 +51,9 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
         btnInserir = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Atendente");
+        setResizable(false);
 
         lblRegFuncional.setText("Reg. Funcional");
 
@@ -241,4 +244,6 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
     private javax.swing.JTextField txtRegFuncional;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+    private ArrayList<Atendente> atendente;
+    private int posAtendente;
 }

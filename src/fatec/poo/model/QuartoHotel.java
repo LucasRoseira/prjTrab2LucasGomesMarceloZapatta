@@ -7,7 +7,7 @@ package fatec.poo.model;
 
 /**
  *
- * @author lucas_000
+ * @author roseira && zapatta
  */
 public class QuartoHotel {
 
@@ -97,6 +97,7 @@ public class QuartoHotel {
     public void liberar(int quantidadeDeDias, double taxaDesconto) {
         this.situacao = false;
         this.dataEntrada = null;
-        
+
     }
+
 }

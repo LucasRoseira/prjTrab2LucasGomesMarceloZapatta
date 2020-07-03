@@ -7,7 +7,7 @@ package fatec.poo.view;
 
 /**
  *
- * @author lucas_000
+ * @author roseira && zapatta
  */
 public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
 
@@ -16,6 +16,7 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
      */
     public GuiReservaLiberaQuarto() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -52,8 +53,9 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
         lblValorAPagar = new javax.swing.JLabel();
         lblSituacao = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Reserva/Liberação Quarto");
+        setResizable(false);
 
         lblRegFuncional0.setText("Reg. Funcional");
 
@@ -61,6 +63,7 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
 
         lblEndereco.setText("Endereço");
 
+        txtNome.setEnabled(false);
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
@@ -72,6 +75,8 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
                 txtRegFuncionalActionPerformed(evt);
             }
         });
+
+        txtEndereco.setEnabled(false);
 
         lblCPFHospede.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -103,6 +108,7 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
         });
 
         jButton7.setText("...");
+        jButton7.setEnabled(false);
 
         lblRegFuncional.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 

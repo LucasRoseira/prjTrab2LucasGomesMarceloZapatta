@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author lucas_000
+ * @author roseira && zapatta
  */
 public class GuiCadastroQuarto extends javax.swing.JFrame {
 
@@ -19,6 +19,7 @@ public class GuiCadastroQuarto extends javax.swing.JFrame {
      */
     public GuiCadastroQuarto(ArrayList<QuartoHotel> h) {
         initComponents();
+        this.setLocationRelativeTo(null);
         hotel = h;
     }
 
@@ -39,8 +40,9 @@ public class GuiCadastroQuarto extends javax.swing.JFrame {
         txtValorDiaria = new javax.swing.JTextField();
         txtNumQuarto = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Quarto");
+        setResizable(false);
 
         lblNumQuarto.setText("Nº Quarto");
 
@@ -138,12 +140,13 @@ public class GuiCadastroQuarto extends javax.swing.JFrame {
             txtNumQuarto.setText(String.valueOf(hotel.get(posQuarto).getNumQuarto()));
             txtValorDiaria.setText(String.valueOf(hotel.get(posQuarto).getValorDiaria()));
 
-            btnConsultar.setEnabled(false);
+            btnConsultar.setEnabled(true);
             btnInserir.setEnabled(false);
         } else {
             txtNumQuarto.setEnabled(true);
+            txtValorDiaria.setText(null);
             txtValorDiaria.setEnabled(true);
-
+            
             btnConsultar.setEnabled(false);
             btnInserir.setEnabled(true);
         }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author lucas_000
+ * @author roseira && zapatta
  */
 public class GuiMenu extends javax.swing.JFrame {
 
@@ -19,6 +19,7 @@ public class GuiMenu extends javax.swing.JFrame {
      */
     public GuiMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,6 +41,7 @@ public class GuiMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel POO");
+        setResizable(false);
 
         jMenuCadastro.setText("Cadastro");
 
@@ -72,6 +74,11 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuRegistro.setText("Registro");
 
         jMenuItemReservarLiberar.setText("Reservar/Liberar");
+        jMenuItemReservarLiberar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemReservarLiberarActionPerformed(evt);
+            }
+        });
         jMenuRegistro.add(jMenuItemReservarLiberar);
 
         jMenuBar1.add(jMenuRegistro);
@@ -82,7 +89,7 @@ public class GuiMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
+            .addGap(0, 438, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,6 +113,12 @@ public class GuiMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         new GuiCadastroHospede(hospedes).setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroHospedeActionPerformed
+
+    private void jMenuItemReservarLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReservarLiberarActionPerformed
+        // TODO add your handling code here:
+        GuiReservaLiberaQuarto reservaLibera = new GuiReservaLiberaQuarto();
+        reservaLibera.setVisible(true);
+    }//GEN-LAST:event_jMenuItemReservarLiberarActionPerformed
 
     /**
      * @param args the command line arguments

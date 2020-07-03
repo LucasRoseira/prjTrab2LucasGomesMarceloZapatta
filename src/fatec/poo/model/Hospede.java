@@ -5,9 +5,11 @@
  */
 package fatec.poo.model;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author lucas_000
+ * @author lucas && zapatta
  */
 public class Hospede extends Pessoa {
 
@@ -15,10 +17,13 @@ public class Hospede extends Pessoa {
     private String cpf;
     private double txDesconto;
     private QuartoHotel quartoHotel;
+    private ArrayList<Hospede> hospede;
 
-    //Método Construtor Hospede tem como parâmetro de entrada o nome
-    public Hospede(String nome) {
+    //Método Construtor Hospede tem como parâmetro de entrada o CPF e nome
+    public Hospede(String cpf, String nome) {
         super(nome);
+        this.cpf = cpf;
+
     }
 
     //Método get CPF, TxDesconto e Quarto Hotel
@@ -34,9 +39,16 @@ public class Hospede extends Pessoa {
         return quartoHotel;
     }
 
-    //Método Set Quarto Hotel
+    //Método Set Quarto Hotel e Tx Desconto
     public void setQuartoHotel(QuartoHotel quartoHotel) {
         this.quartoHotel = quartoHotel;
     }
 
+    public void setTxDesconto(double txDesconto) {
+        this.txDesconto = txDesconto;
+    }
+
+    public void addHospede(Hospede hos) {
+        hospede.add(hos);
+    }
 }

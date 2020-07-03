@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author lucas_000
+ * @author roseira && zapatta
  */
 public class Atendente extends Pessoa {
 
@@ -20,8 +20,9 @@ public class Atendente extends Pessoa {
 
     /*Método construtor Atendente 
     tem como parâmetro de entrada o registro funcional e o nome */
-    public Atendente(String nome) {
+    public Atendente(String regFunc, String nome) {
         super(nome);
+        this.regFunc = regFunc;
         this.quartoHotel = new ArrayList<>();
     }
 

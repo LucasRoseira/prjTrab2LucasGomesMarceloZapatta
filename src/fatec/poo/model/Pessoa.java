@@ -5,9 +5,11 @@
  */
 package fatec.poo.model;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author lucas_000
+ * @author roseira && zapatta
  */
 public abstract class Pessoa {
 

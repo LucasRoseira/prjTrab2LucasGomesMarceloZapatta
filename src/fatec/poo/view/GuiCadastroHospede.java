@@ -6,19 +6,22 @@
 package fatec.poo.view;
 
 import fatec.poo.model.Hospede;
+import fatec.poo.model.Pessoa;
 import java.util.ArrayList;
 
 /**
  *
- * @author lucas_000
+ * @author roseira && zapatta
  */
 public class GuiCadastroHospede extends javax.swing.JFrame {
 
     /**
      * Creates new form GuiCadastroCliente
      */
-    public GuiCadastroHospede(ArrayList<Hospede> hospedes) {
+    public GuiCadastroHospede(ArrayList<Hospede> h) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        hospede = h;
     }
 
     /**
@@ -47,8 +50,9 @@ public class GuiCadastroHospede extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Hóspede");
+        setResizable(false);
 
         lblCPF.setText("CPF");
 
@@ -80,15 +84,35 @@ public class GuiCadastroHospede extends javax.swing.JFrame {
         lblTaxaDesconto.setText("Taxa Desconto (%)");
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnInserir.setText("Inserir");
         btnInserir.setEnabled(false);
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +210,134 @@ public class GuiCadastroHospede extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+
+        int x;
+        for (x = 0; x < hospede.size(); x++) {
+            if (hospede.get(x) instanceof Hospede) {
+                if (((Hospede) hospede.get(x)).getCpf().equals(txtCPF.getText())) {
+                    break;
+                }
+            }
+        }
+
+        if (x < hospede.size()) {
+            posHospede = x; //localizou o objeto Hospede no ArrayList
+        } else {
+            posHospede = -1;//não localizou o objeto Hospede no ArrayList
+        }
+
+        if (posHospede >= 0) {
+            txtCPF.setText(((Hospede) hospede.get(posHospede)).getCpf());
+            txtNome.setText(((Hospede) hospede.get(posHospede)).getNome());
+            txtEndereco.setText(((Hospede) hospede.get(posHospede)).getEndereco());
+            txtTaxaDesconto.setText(String.valueOf(((Hospede) hospede.get(posHospede)).getTxDesconto()));
+            txtTelefone.setText(((Hospede) hospede.get(posHospede)).getTelefone());
+
+            btnConsultar.setEnabled(false);
+            btnInserir.setEnabled(false);
+            btnAlterar.setEnabled(true);
+            btnExcluir.setEnabled(true);
+        } else {
+            btnConsultar.setEnabled(false);
+            btnInserir.setEnabled(true);
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+            txtNome.requestFocus();
+        }
+        txtCPF.setEnabled(false);
+        txtNome.setEnabled(true);
+        txtEndereco.setEnabled(true);
+        txtTaxaDesconto.setEnabled(true);
+        txtTelefone.setEnabled(true);
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        // TODO add your handling code here:
+        h = new Hospede(txtCPF.getText(),
+                txtNome.getText()
+        );
+        ((Hospede) h).setEndereco((txtEndereco.getText()));
+        ((Hospede) h).setTelefone((txtTelefone.getText()));
+        ((Hospede) h).setTxDesconto(Double.parseDouble(txtTaxaDesconto.getText()));
+
+        hospede.add((Hospede) h);
+
+        txtCPF.setText(null);
+        txtNome.setText(null);
+        txtEndereco.setText(null);
+        txtTaxaDesconto.setText(null);
+        txtTelefone.setText(null);
+
+        btnConsultar.setEnabled(true);
+        btnInserir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+
+        txtCPF.setEnabled(true);
+        txtNome.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtTaxaDesconto.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        txtCPF.requestFocus();
+    }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+        /*Falta alterar o nome  */
+        txtCPF.setEnabled(false);
+        hospede.get(posHospede).setEndereco(txtEndereco.getText());
+        hospede.get(posHospede).setTelefone(txtTelefone.getText());
+
+        ((Hospede) h).setTelefone((txtTelefone.getText()));
+
+        hospede.get(posHospede).setTxDesconto(Double.parseDouble(txtTaxaDesconto.getText()));
+
+        txtCPF.setText(null);
+        txtNome.setText(null);
+        txtEndereco.setText(null);
+        txtTelefone.setText(null);
+        txtTaxaDesconto.setText(null);
+
+        btnConsultar.setEnabled(true);
+        btnInserir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtCPF.setEnabled(true);
+        txtNome.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        txtTaxaDesconto.setEnabled(false);
+
+        txtCPF.requestFocus();
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        if (posHospede >= 0) {
+            hospede.remove(posHospede);
+            posHospede = -1;
+        }
+        txtCPF.setText(null);
+        txtNome.setText(null);
+        txtEndereco.setText(null);
+        txtTelefone.setText(null);
+        txtTaxaDesconto.setText(null);
+        
+        btnConsultar.setEnabled(true);
+        btnInserir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtCPF.setEnabled(true);
+        txtNome.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        txtTaxaDesconto.setEnabled(false);
+        
+        txtCPF.requestFocus();
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,4 +360,8 @@ public class GuiCadastroHospede extends javax.swing.JFrame {
     private javax.swing.JTextField txtTaxaDesconto;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+
+    private ArrayList<Hospede> hospede;
+    private Hospede h = null;
+    private int posHospede;
 }
