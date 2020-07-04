@@ -23,7 +23,7 @@ public class Atendente extends Pessoa {
     public Atendente(String regFunc, String nome) {
         super(nome);
         this.regFunc = regFunc;
-        this.quartoHotel = new ArrayList<>();
+        this.quartoHotel = new ArrayList<QuartoHotel>();
     }
 
     //Método get RegFunc e Turno
@@ -41,7 +41,7 @@ public class Atendente extends Pessoa {
     }
 
     //Public void addQuartoHotel
-    public void addQuaroHotel(QuartoHotel qh) {
-        quartoHotel.add(qh);
+    public void addQuartoHotel(QuartoHotel quartoHotel) {
+        this.quartoHotel.add(quartoHotel);
     }
 }

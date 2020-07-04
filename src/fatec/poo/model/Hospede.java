@@ -17,13 +17,11 @@ public class Hospede extends Pessoa {
     private String cpf;
     private double txDesconto;
     private QuartoHotel quartoHotel;
-    private ArrayList<Hospede> hospede;
 
     //Método Construtor Hospede tem como parâmetro de entrada o CPF e nome
     public Hospede(String cpf, String nome) {
         super(nome);
         this.cpf = cpf;
-
     }
 
     //Método get CPF, TxDesconto e Quarto Hotel
@@ -46,9 +44,5 @@ public class Hospede extends Pessoa {
 
     public void setTxDesconto(double txDesconto) {
         this.txDesconto = txDesconto;
-    }
-
-    public void addHospede(Hospede hos) {
-        hospede.add(hos);
     }
 }

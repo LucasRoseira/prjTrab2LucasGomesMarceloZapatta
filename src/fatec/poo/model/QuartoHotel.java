@@ -16,12 +16,14 @@ public class QuartoHotel {
     private final double valorDiaria;
     private boolean situacao;
     private String dataEntrada;
-    private String dataSaida;       //Não esta presente no diagrama apenas na GUI
+    
+    // Não esta presente no diagrama apenas na GUI
+    private String dataSaida;
     private double totalFaturado;
     private Hospede hospede;
     private Atendente atendente;
 
-    //Método construtor Quarto Hotel
+    // Método construtor Quarto Hotel
     public QuartoHotel(int numQuarto, double valorDiaria) {
         this.numQuarto = numQuarto;
         this.valorDiaria = valorDiaria;
@@ -39,7 +41,7 @@ public class QuartoHotel {
         return valorDiaria;
     }
 
-    public boolean isSituacao() {
+    public boolean getSituacao() {
         return situacao;
     }
 
@@ -67,37 +69,35 @@ public class QuartoHotel {
     public void setAtendente(Atendente atendente) {
         this.atendente = atendente;
     }
-
-    /* - Método Reservar 
-         Tem como parâmetros de entrada o Hospede e o Atendente.
-       - Passa a situação do quarto para ocupado (true).
-       - Estabelece a associação binária bidirecional entre
-          QuartoHotel/Hospede, QuartoHotel/Atendente. 
-     ****Utilizar o this para estabelecer
-    a ligação entre Hospede/QuartoHotel e Atendente/QuartoHotel.
-     */
+    
+    /* Método Reservar
+     * @params Hospede hospede, Atendente atendente
+     * Define a situação do quarto para ocupado(true)
+     * Associação binária bidirecional entre Hospede <-> QuartoHotel
+     * Associação binária bidirecional entre Atendente <-> QuartoHotel
+    */
     public void reservar(Hospede hospede, Atendente atendente) {
         this.situacao = true;
         this.hospede.setQuartoHotel(this);
-        atendente.addQuaroHotel(this);
+        atendente.addQuartoHotel(this);
+        // TODO reservar
     }
 
-    /* PUBLIC VOID LIBERAR
-    Tem como parâmetro de entrada a quantidade de dias que o 
-    hóspede ficou hospedado no quarto e a taxa de desconto do hóspede.
-    - Passa a situação do quarto para livre (false).
-    - Inicializa a data de entrada.
-    - Inicializa os apontamentos entre QuartoHotel/Hospede, 
-    QuartoHotel/Atendente, Hospede/QuartoHotel, Atendente/QuartoHotel.
-    - Calcula o valor da hospedagem aplicando, em seguida, a taxa de
-    desconto cujo valor calculado deve ser subtraído do valor da hospedagem.
-    - Adiciona o valor da hospedagem no total do faturamento do quarto.
-    - Retorna o valor da hospedagem que deverá ser paga pelo hóspede.
-     */
+    /* Método Liberar
+     * @params int quantidadeDeDias, double taxaDesconto
+     * Tem como parâmetro de entrada a quantidade de dias que o 
+     * hóspede ficou hospedado no quarto e a taxa de desconto do hóspede.
+     * Define a situação do quarto como livre (false)
+     * Inicializa data de entrada
+     * Realiza as associações
+     * Calcula o valor da hospedagem aplicando o desconto
+     * Adiciona o valor da hospedagem no total de faturamento do quarto
+     * @return double valorHospedagem
+    */
     public void liberar(int quantidadeDeDias, double taxaDesconto) {
         this.situacao = false;
         this.dataEntrada = null;
-
+        // TODO liberar
     }
 
 }
