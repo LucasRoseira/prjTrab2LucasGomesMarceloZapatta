@@ -289,10 +289,10 @@ public class GuiCadastroHospede extends javax.swing.JFrame {
         // TODO add your handling code here:
         /*Falta alterar o nome  */
         txtCPF.setEnabled(false);
+        hospede.get(posHospede).setNome(txtNome.getText());
+        hospede.get(posHospede).setNome(txtNome.getText());
         hospede.get(posHospede).setEndereco(txtEndereco.getText());
         hospede.get(posHospede).setTelefone(txtTelefone.getText());
-
-        ((Hospede) h).setTelefone((txtTelefone.getText()));
 
         hospede.get(posHospede).setTxDesconto(Double.parseDouble(txtTaxaDesconto.getText()));
 

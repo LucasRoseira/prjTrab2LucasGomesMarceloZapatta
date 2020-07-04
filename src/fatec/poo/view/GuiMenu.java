@@ -45,7 +45,7 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuCadastro.setText("Cadastro");
 
-        jMenuItemCadastroQuarto.setText("Quatro");
+        jMenuItemCadastroQuarto.setText("Quarto");
         jMenuItemCadastroQuarto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemCadastroQuartoActionPerformed(evt);

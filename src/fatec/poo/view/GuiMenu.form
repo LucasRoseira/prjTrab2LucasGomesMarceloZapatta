@@ -11,7 +11,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCadastroQuarto">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Quatro"/>
+                <Property name="text" type="java.lang.String" value="Quarto"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCadastroQuartoActionPerformed"/>
