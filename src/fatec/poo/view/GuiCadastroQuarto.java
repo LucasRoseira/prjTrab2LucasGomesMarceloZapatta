@@ -44,7 +44,7 @@ public class GuiCadastroQuarto extends javax.swing.JFrame {
         setTitle("Cadastro Quarto");
         setResizable(false);
 
-        lblNumQuarto.setText("Nº Quarto");
+        lblNumQuarto.setText("No. Quarto");
 
         lblValorDiaria.setText("Valor Diária");
 

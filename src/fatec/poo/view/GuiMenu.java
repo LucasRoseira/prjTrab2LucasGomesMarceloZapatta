@@ -61,7 +61,7 @@ public class GuiMenu extends javax.swing.JFrame {
         });
         jMenuCadastro.add(jMenuItemCadastroAtendente);
 
-        jMenuItemCadastroHospede.setText("Hospede");
+        jMenuItemCadastroHospede.setText("Hóspede");
         jMenuItemCadastroHospede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemCadastroHospedeActionPerformed(evt);
