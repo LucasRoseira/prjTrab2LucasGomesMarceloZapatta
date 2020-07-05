@@ -5,18 +5,28 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.model.Atendente;
+import fatec.poo.model.Hospede;
+import fatec.poo.model.QuartoHotel;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author roseira && zapatta
  */
-public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
+public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
     /**
      * Creates new form GuiCadastroCliente
      */
-    public GuiReservaLiberaQuarto() {
+    public GuiReservaLiberacaoQuarto(ArrayList<Hospede> h,
+            ArrayList<Atendente> a, ArrayList<QuartoHotel> q) {
         initComponents();
         this.setLocationRelativeTo(null);
+        hospede = h;
+        atendente = a;
+        quartoHotel = q;
     }
 
     /**
@@ -32,10 +42,10 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
         jScrollBar1 = new javax.swing.JScrollBar();
         lblRegFuncional0 = new javax.swing.JLabel();
         lblCPF = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        txtCpfHospede = new javax.swing.JTextField();
         txtRegFuncional = new javax.swing.JTextField();
-        lblCPFHospede = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        lblNomeHospede = new javax.swing.JLabel();
+        btnPesquisarQuarto = new javax.swing.JButton();
         lblNumQuarto = new javax.swing.JLabel();
         txtNumeroQuarto = new javax.swing.JTextField();
         lblDataEntrada = new javax.swing.JLabel();
@@ -45,13 +55,13 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
         btnReservar = new javax.swing.JButton();
         btnLiberar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        lblRegFuncional = new javax.swing.JLabel();
+        btnPesquisarHospede = new javax.swing.JButton();
+        lblNomeAtendente = new javax.swing.JLabel();
         lblValorPagar0 = new javax.swing.JLabel();
         lblSituacao0 = new javax.swing.JLabel();
         lblValorAPagar = new javax.swing.JLabel();
         lblSituacao = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        btnPesquisarAtendente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Reserva/Liberação Quarto");
@@ -61,10 +71,10 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
 
         lblCPF.setText("CPF Hospede");
 
-        txtNome.setEnabled(false);
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
+        txtCpfHospede.setEnabled(false);
+        txtCpfHospede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
+                txtCpfHospedeActionPerformed(evt);
             }
         });
 
@@ -74,10 +84,15 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
             }
         });
 
-        lblCPFHospede.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        lblNomeHospede.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jButton6.setText("...");
-        jButton6.setEnabled(false);
+        btnPesquisarQuarto.setText("...");
+        btnPesquisarQuarto.setEnabled(false);
+        btnPesquisarQuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarQuartoActionPerformed(evt);
+            }
+        });
 
         lblNumQuarto.setText("No. Quarto");
 
@@ -104,10 +119,15 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("...");
-        jButton7.setEnabled(false);
+        btnPesquisarHospede.setText("...");
+        btnPesquisarHospede.setEnabled(false);
+        btnPesquisarHospede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarHospedeActionPerformed(evt);
+            }
+        });
 
-        lblRegFuncional.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        lblNomeAtendente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         lblValorPagar0.setText("Valor a Pagar");
 
@@ -117,7 +137,12 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
 
         lblSituacao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jButton8.setText("...");
+        btnPesquisarAtendente.setText("...");
+        btnPesquisarAtendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarAtendenteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,7 +159,7 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(59, 59, 59)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnPesquisarQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                                 .addComponent(lblSituacao0)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -151,15 +176,15 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(txtRegFuncional, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(btnPesquisarAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtCpfHospede, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(btnPesquisarHospede, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(26, 26, 26)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblCPFHospede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblRegFuncional, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))))
+                                            .addComponent(lblNomeHospede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblNomeAtendente, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(lblDataSaida)
                     .addComponent(lblDataEntrada)
@@ -179,18 +204,18 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRegFuncional, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNomeAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblRegFuncional0)
                         .addComponent(txtRegFuncional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton8)))
+                        .addComponent(btnPesquisarAtendente)))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblCPF)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton7))
-                    .addComponent(lblCPFHospede, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCpfHospede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPesquisarHospede))
+                    .addComponent(lblNomeHospede, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -200,7 +225,7 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblNumQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNumeroQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton6))
+                                    .addComponent(btnPesquisarQuarto))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblDataEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,9 +256,9 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+    private void txtCpfHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfHospedeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
+    }//GEN-LAST:event_txtCpfHospedeActionPerformed
 
     private void txtRegFuncionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegFuncionalActionPerformed
         // TODO add your handling code here:
@@ -244,34 +269,136 @@ public class GuiReservaLiberaQuarto extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
+    private void btnPesquisarAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarAtendenteActionPerformed
+        int x;
+        for (x = 0; x < atendente.size(); x++) {
+            if (atendente.get(x) instanceof Atendente) {
+                if (((Atendente) atendente.get(x)).getRegFunc().equals(txtRegFuncional.getText())) {
+                    break;
+                }
+            }
+        }
+
+        if (x < atendente.size()) {
+            posAtendente = x; //localizou o objeto Hospede no ArrayList
+        } else {
+            posAtendente = -1;//não localizou o objeto Hospede no ArrayList
+        }
+
+        if (posAtendente >= 0) {
+            lblNomeAtendente.setText(atendente.get(posAtendente).getNome());
+            
+            txtRegFuncional.setEnabled(false);
+            btnPesquisarAtendente.setEnabled(false);
+            
+            txtCpfHospede.setEnabled(true);
+            btnPesquisarHospede.setEnabled(true);
+            txtCpfHospede.requestFocus();
+        } else {
+            JOptionPane.showMessageDialog(this, "Atendente não cadastrado");
+        }
+    }//GEN-LAST:event_btnPesquisarAtendenteActionPerformed
+
+    private void btnPesquisarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarHospedeActionPerformed
+        int x;
+        for (x = 0; x < hospede.size(); x++) {
+            if (hospede.get(x) instanceof Hospede) {
+                if (((Hospede) hospede.get(x)).getCpf().equals(txtCpfHospede.getText())) {
+                    break;
+                }
+            }
+        }
+
+        if (x < hospede.size()) {
+            posHospede = x; //localizou o objeto Hospede no ArrayList
+        } else {
+            posHospede = -1;//não localizou o objeto Hospede no ArrayList
+        }
+
+        if (posHospede >= 0) {
+            lblNomeHospede.setText(hospede.get(posHospede).getNome());
+            
+            txtCpfHospede.setEnabled(false);
+            btnPesquisarHospede.setEnabled(false);
+            
+            txtNumeroQuarto.setEnabled(true);
+            btnPesquisarQuarto.setEnabled(true);
+            
+            txtNumeroQuarto.requestFocus();
+        } else {
+            JOptionPane.showMessageDialog(this, "Hóspede não cadastrado");
+        }
+    }//GEN-LAST:event_btnPesquisarHospedeActionPerformed
+
+    private void btnPesquisarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarQuartoActionPerformed
+        int x;
+        for (x = 0; x < quartoHotel.size(); x++) {
+            if (quartoHotel.get(x) instanceof QuartoHotel) {
+                if (((QuartoHotel) quartoHotel.get(x)).getNumQuarto() == (Integer.parseInt(txtNumeroQuarto.getText()))) {
+                    break;
+                }
+            }
+        }
+
+        if (x < quartoHotel.size()) {
+            posQuartoHotel = x; // localizou o objeto QuartoHotel no ArrayList
+        } else {
+            posQuartoHotel = -1; // não localizou o objeto QuartoHotel no ArrayList
+        }
+
+        if (posQuartoHotel >= 0) {
+            if (quartoHotel.get(x).getSituacao()) {
+                lblNomeHospede.setText(hospede.get(posHospede).getNome());
+
+                txtNumeroQuarto.setEnabled(false);
+                btnPesquisarQuarto.setEnabled(false);
+
+                txtDataEntrada.setEnabled(true);
+                btnReservar.setEnabled(true);
+
+                txtDataEntrada.requestFocus();
+            } else {
+                JOptionPane.showMessageDialog(this, "Quarto ocupado");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Quarto não cadastrado");
+        }
+    }//GEN-LAST:event_btnPesquisarQuartoActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLiberar;
+    private javax.swing.JButton btnPesquisarAtendente;
+    private javax.swing.JButton btnPesquisarHospede;
+    private javax.swing.JButton btnPesquisarQuarto;
     private javax.swing.JButton btnReservar;
     private javax.swing.JButton btnSair;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel lblCPF;
-    private javax.swing.JLabel lblCPFHospede;
     private javax.swing.JLabel lblDataEntrada;
     private javax.swing.JLabel lblDataSaida;
+    private javax.swing.JLabel lblNomeAtendente;
+    private javax.swing.JLabel lblNomeHospede;
     private javax.swing.JLabel lblNumQuarto;
-    private javax.swing.JLabel lblRegFuncional;
     private javax.swing.JLabel lblRegFuncional0;
     private javax.swing.JLabel lblSituacao;
     private javax.swing.JLabel lblSituacao0;
     private javax.swing.JLabel lblValorAPagar;
     private javax.swing.JLabel lblValorPagar0;
+    private javax.swing.JTextField txtCpfHospede;
     private javax.swing.JTextField txtDataEntrada;
     private javax.swing.JTextField txtDataSaida;
-    private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumeroQuarto;
     private javax.swing.JTextField txtRegFuncional;
     // End of variables declaration//GEN-END:variables
+    private ArrayList<Hospede> hospede;
+    private ArrayList<Atendente> atendente;
+    private ArrayList<QuartoHotel> quartoHotel;
+    private int posAtendente;
+    private int posHospede;
+    private int posQuartoHotel;
 }

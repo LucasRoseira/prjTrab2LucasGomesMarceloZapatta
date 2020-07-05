@@ -42,7 +42,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="59" pref="59" max="-2" attributes="0"/>
-                              <Component id="jButton6" min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="btnPesquisarQuarto" min="-2" pref="45" max="-2" attributes="0"/>
                               <EmptySpace pref="94" max="32767" attributes="0"/>
                               <Component id="lblSituacao0" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -61,18 +61,18 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="txtRegFuncional" min="-2" pref="92" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jButton8" min="-2" pref="45" max="-2" attributes="0"/>
+                                              <Component id="btnPesquisarAtendente" min="-2" pref="45" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtNome" min="-2" pref="92" max="-2" attributes="0"/>
+                                              <Component id="txtCpfHospede" min="-2" pref="92" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jButton7" min="-2" pref="45" max="-2" attributes="0"/>
+                                              <Component id="btnPesquisarHospede" min="-2" pref="45" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblCPFHospede" max="32767" attributes="0"/>
-                                          <Component id="lblRegFuncional" pref="185" max="32767" attributes="0"/>
+                                          <Component id="lblNomeHospede" max="32767" attributes="0"/>
+                                          <Component id="lblNomeAtendente" pref="185" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -102,21 +102,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblRegFuncional" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="lblNomeAtendente" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblRegFuncional0" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtRegFuncional" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPesquisarAtendente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="lblCPF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCpfHospede" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPesquisarHospede" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="lblCPFHospede" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="lblNomeHospede" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -127,7 +127,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblNumQuarto" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   <Component id="txtNumeroQuarto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnPesquisarQuarto" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -178,12 +178,12 @@
         <Property name="text" type="java.lang.String" value="CPF Hospede"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNome">
+    <Component class="javax.swing.JTextField" name="txtCpfHospede">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCpfHospedeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRegFuncional">
@@ -191,7 +191,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRegFuncionalActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCPFHospede">
+    <Component class="javax.swing.JLabel" name="lblNomeHospede">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -200,11 +200,14 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton6">
+    <Component class="javax.swing.JButton" name="btnPesquisarQuarto">
       <Properties>
         <Property name="text" type="java.lang.String" value="..."/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarQuartoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNumQuarto">
       <Properties>
@@ -256,13 +259,16 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton7">
+    <Component class="javax.swing.JButton" name="btnPesquisarHospede">
       <Properties>
         <Property name="text" type="java.lang.String" value="..."/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarHospedeActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblRegFuncional">
+    <Component class="javax.swing.JLabel" name="lblNomeAtendente">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -299,10 +305,13 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton8">
+    <Component class="javax.swing.JButton" name="btnPesquisarAtendente">
       <Properties>
         <Property name="text" type="java.lang.String" value="..."/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarAtendenteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

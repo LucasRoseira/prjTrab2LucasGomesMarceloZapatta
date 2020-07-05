@@ -100,24 +100,19 @@ public class GuiMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemCadastroQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroQuartoActionPerformed
-        // TODO add your handling code here:
         new GuiQuarto(hotel).setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroQuartoActionPerformed
 
     private void jMenuItemCadastroAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroAtendenteActionPerformed
-        // TODO add your handling code here:
         new GuiAtendente(atendentes).setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroAtendenteActionPerformed
 
     private void jMenuItemCadastroHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroHospedeActionPerformed
-        // TODO add your handling code here:
         new GuiHospede(hospedes).setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroHospedeActionPerformed
 
     private void jMenuItemReservarLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReservarLiberarActionPerformed
-        // TODO add your handling code here:
-        GuiReservaLiberaQuarto reservaLibera = new GuiReservaLiberaQuarto();
-        reservaLibera.setVisible(true);
+        new GuiReservaLiberacaoQuarto(hospedes, atendentes, hotel).setVisible(true);
     }//GEN-LAST:event_jMenuItemReservarLiberarActionPerformed
 
     /**
