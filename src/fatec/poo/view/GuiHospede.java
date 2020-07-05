@@ -6,7 +6,6 @@
 package fatec.poo.view;
 
 import fatec.poo.model.Hospede;
-import fatec.poo.model.Pessoa;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +20,7 @@ public class GuiHospede extends javax.swing.JFrame {
     public GuiHospede(ArrayList<Hospede> h) {
         initComponents();
         this.setLocationRelativeTo(null);
-        hospede = h;
+        cadastro = h;
     }
 
     /**
@@ -214,26 +213,26 @@ public class GuiHospede extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         int x;
-        for (x = 0; x < hospede.size(); x++) {
-            if (hospede.get(x) instanceof Hospede) {
-                if (((Hospede) hospede.get(x)).getCpf().equals(txtCPF.getText())) {
+        for (x = 0; x < cadastro.size(); x++) {
+            if (cadastro.get(x) instanceof Hospede) {
+                if (((Hospede) cadastro.get(x)).getCpf().equals(txtCPF.getText())) {
                     break;
                 }
             }
         }
 
-        if (x < hospede.size()) {
+        if (x < cadastro.size()) {
             posHospede = x; //localizou o objeto Hospede no ArrayList
         } else {
             posHospede = -1; //não localizou o objeto Hospede no ArrayList
         }
 
         if (posHospede >= 0) {
-            txtCPF.setText(((Hospede) hospede.get(posHospede)).getCpf());
-            txtNome.setText(((Hospede) hospede.get(posHospede)).getNome());
-            txtEndereco.setText(((Hospede) hospede.get(posHospede)).getEndereco());
-            txtTaxaDesconto.setText(String.valueOf(((Hospede) hospede.get(posHospede)).getTxDesconto()));
-            txtTelefone.setText(((Hospede) hospede.get(posHospede)).getTelefone());
+            txtCPF.setText(((Hospede) cadastro.get(posHospede)).getCpf());
+            txtNome.setText(((Hospede) cadastro.get(posHospede)).getNome());
+            txtEndereco.setText(((Hospede) cadastro.get(posHospede)).getEndereco());
+            txtTaxaDesconto.setText(String.valueOf(((Hospede) cadastro.get(posHospede)).getTxDesconto()));
+            txtTelefone.setText(((Hospede) cadastro.get(posHospede)).getTelefone());
 
             btnConsultar.setEnabled(false);
             btnInserir.setEnabled(false);
@@ -261,7 +260,7 @@ public class GuiHospede extends javax.swing.JFrame {
         ((Hospede) h).setTelefone((txtTelefone.getText()));
         ((Hospede) h).setTxDesconto(Double.parseDouble(txtTaxaDesconto.getText()));
 
-        hospede.add((Hospede) h);
+        cadastro.add((Hospede) h);
 
         txtCPF.setText(null);
         txtNome.setText(null);
@@ -284,11 +283,11 @@ public class GuiHospede extends javax.swing.JFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         txtCPF.setEnabled(false);
-        hospede.get(posHospede).setNome(txtNome.getText());
-        hospede.get(posHospede).setEndereco(txtEndereco.getText());
-        hospede.get(posHospede).setTelefone(txtTelefone.getText());
+        cadastro.get(posHospede).setNome(txtNome.getText());
+        cadastro.get(posHospede).setEndereco(txtEndereco.getText());
+        cadastro.get(posHospede).setTelefone(txtTelefone.getText());
 
-        hospede.get(posHospede).setTxDesconto(Double.parseDouble(txtTaxaDesconto.getText()));
+        cadastro.get(posHospede).setTxDesconto(Double.parseDouble(txtTaxaDesconto.getText()));
 
         txtCPF.setText(null);
         txtNome.setText(null);
@@ -311,7 +310,7 @@ public class GuiHospede extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         if (posHospede >= 0) {
-            hospede.remove(posHospede);
+            cadastro.remove(posHospede);
             posHospede = -1;
         }
         txtCPF.setText(null);
@@ -356,7 +355,7 @@ public class GuiHospede extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 
-    private ArrayList<Hospede> hospede;
+    private ArrayList<Hospede> cadastro;
     private Hospede h = null;
     private int posHospede;
 }
