@@ -70,6 +70,10 @@ public class QuartoHotel {
         this.atendente = atendente;
     }
 
+    public void setHospede(Hospede hospede) {
+        this.hospede = hospede;
+    }
+
     /* Método Reservar
      * @params Hospede hospede, Atendente atendente
      * Define a situação do quarto para ocupado(true)
@@ -77,10 +81,13 @@ public class QuartoHotel {
      * Associação binária bidirecional entre Atendente <-> QuartoHotel
      */
     public void reservar(Hospede hospede, Atendente atendente) {
-        this.situacao = false;
-        this.hospede.setQuartoHotel(this);
+        this.situacao = true;
+        
+        hospede.setQuartoHotel(this);
         atendente.addQuartoHotel(this);
-        // TODO reservar
+        
+        this.setAtendente(atendente);
+        this.setHospede(hospede);
     }
 
     /* Método Liberar

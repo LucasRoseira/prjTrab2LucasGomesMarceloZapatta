@@ -137,16 +137,19 @@ public class GuiQuarto extends javax.swing.JFrame {
         }
 
         if (posQuarto >= 0) {
-            txtNumQuarto.setText(String.valueOf(hotel.get(posQuarto).getNumQuarto()));
             txtValorDiaria.setText(String.valueOf(hotel.get(posQuarto).getValorDiaria()));
-
+            
+            txtNumQuarto.requestFocus();
+            
             btnConsultar.setEnabled(true);
             btnInserir.setEnabled(false);
         } else {
-            txtNumQuarto.setEnabled(true);
-            txtNumQuarto.requestFocus();
+            txtNumQuarto.setEnabled(false);
+            
             txtValorDiaria.setText(null);
             txtValorDiaria.setEnabled(true);
+            
+            txtValorDiaria.requestFocus();
 
             btnConsultar.setEnabled(false);
             btnInserir.setEnabled(true);
@@ -164,6 +167,7 @@ public class GuiQuarto extends javax.swing.JFrame {
         hotel.add(hot);
 
         txtNumQuarto.setText(null);
+        txtNumQuarto.setEnabled(true);
         txtNumQuarto.requestFocus();
         txtValorDiaria.setText(null);
         txtValorDiaria.setEnabled(false);

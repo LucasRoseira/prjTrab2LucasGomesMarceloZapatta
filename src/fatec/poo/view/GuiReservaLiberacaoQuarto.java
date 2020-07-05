@@ -108,6 +108,11 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
         btnReservar.setText("Reservar");
         btnReservar.setEnabled(false);
+        btnReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservarActionPerformed(evt);
+            }
+        });
 
         btnLiberar.setText("Liberar");
         btnLiberar.setEnabled(false);
@@ -301,6 +306,7 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
     private void btnPesquisarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarHospedeActionPerformed
         int x;
+        
         for (x = 0; x < hospede.size(); x++) {
             if (hospede.get(x) instanceof Hospede) {
                 if (((Hospede) hospede.get(x)).getCpf().equals(txtCpfHospede.getText())) {
@@ -321,10 +327,22 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
             txtCpfHospede.setEnabled(false);
             btnPesquisarHospede.setEnabled(false);
             
-            txtNumeroQuarto.setEnabled(true);
-            btnPesquisarQuarto.setEnabled(true);
-            
-            txtNumeroQuarto.requestFocus();
+            if (hospede.get(posHospede).getQuartoHotel() instanceof QuartoHotel) {
+                txtNumeroQuarto.setText(String.valueOf(hospede.get(posHospede).getQuartoHotel().getNumQuarto()));
+                txtDataEntrada.setText(hospede.get(posHospede).getQuartoHotel().getDataEntrada());
+                lblSituacao.setText("Ocupado");
+                
+                txtDataSaida.setEnabled(true);
+                txtDataSaida.requestFocus();
+                btnLiberar.setEnabled(true);
+
+                txtNumeroQuarto.requestFocus();
+            } else {
+                txtNumeroQuarto.setEnabled(true);
+                btnPesquisarQuarto.setEnabled(true);
+
+                txtNumeroQuarto.requestFocus();
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Hóspede não cadastrado");
         }
@@ -347,7 +365,7 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
         }
 
         if (posQuartoHotel >= 0) {
-            if (quartoHotel.get(x).getSituacao()) {
+            if (!quartoHotel.get(x).getSituacao()) {
                 lblNomeHospede.setText(hospede.get(posHospede).getNome());
 
                 txtNumeroQuarto.setEnabled(false);
@@ -364,6 +382,26 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Quarto não cadastrado");
         }
     }//GEN-LAST:event_btnPesquisarQuartoActionPerformed
+
+    private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
+        QuartoHotel quartoHotelReserva = quartoHotel.get(posQuartoHotel);
+        quartoHotelReserva.setDataEntrada(txtDataEntrada.getText());
+        quartoHotelReserva.reservar((Hospede) hospede.get(posHospede), (Atendente) atendente.get(posAtendente));
+
+        btnReservar.setEnabled(false);
+        txtDataEntrada.setEnabled(false);
+        txtDataEntrada.setText(null);
+        
+        txtRegFuncional.setEnabled(true);
+        
+        txtRegFuncional.setText(null);
+        txtCpfHospede.setText(null);
+        txtNumeroQuarto.setText(null);
+        
+        lblNomeAtendente.setText(null);
+        lblNomeHospede.setText(null);
+        btnPesquisarAtendente.setEnabled(true);
+    }//GEN-LAST:event_btnReservarActionPerformed
 
     /**
      * @param args the command line arguments
