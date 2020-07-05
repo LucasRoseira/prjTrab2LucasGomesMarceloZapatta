@@ -283,10 +283,7 @@ public class GuiHospede extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
-        /*Falta alterar o nome  */
         txtCPF.setEnabled(false);
-        hospede.get(posHospede).setNome(txtNome.getText());
         hospede.get(posHospede).setNome(txtNome.getText());
         hospede.get(posHospede).setEndereco(txtEndereco.getText());
         hospede.get(posHospede).setTelefone(txtTelefone.getText());
@@ -313,7 +310,6 @@ public class GuiHospede extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
         if (posHospede >= 0) {
             hospede.remove(posHospede);
             posHospede = -1;

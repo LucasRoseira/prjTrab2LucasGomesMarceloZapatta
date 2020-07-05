@@ -19,10 +19,10 @@ public class GuiAtendente extends javax.swing.JFrame {
     /**
      * Creates new form GuiCadastroCliente
      */
-    public GuiAtendente(ArrayList<Atendente> at) {
+    public GuiAtendente(ArrayList<Atendente> c) {
         initComponents();
         this.setLocationRelativeTo(null);
-        atendente = at;
+        cadastro = c;
         
         bgpTurno.add(rdbManha);
         bgpTurno.add(rdbTarde);
@@ -158,6 +158,11 @@ public class GuiAtendente extends javax.swing.JFrame {
 
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,26 +247,80 @@ public class GuiAtendente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+        String turno = "";
+        
+        txtRegFuncional.setEnabled(false);
+        cadastro.get(posAtendente).setNome(txtNome.getText());
+        cadastro.get(posAtendente).setEndereco(txtEndereco.getText());
+        cadastro.get(posAtendente).setTelefone(txtTelefone.getText());
+        
+        if (rdbManha.isSelected()) {
+            turno = "M";
+        } else if (rdbTarde.isSelected()){
+            turno = "T";
+        } else {
+            turno = "N";
+        }
+        
+        cadastro.get(posAtendente).setTurno(turno);
+        
+        txtRegFuncional.setText(null);
+        txtNome.setText(null);
+        txtEndereco.setText(null);
+        txtTelefone.setText(null);
+        rdbManha.setSelected(true);
+        
+        txtRegFuncional.setEnabled(true);
+        txtNome.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        pnlTurno.setEnabled(false);
+        rdbManha.setEnabled(false);
+        rdbTarde.setEnabled(false);
+        rdbNoite.setEnabled(false);
+        
+        btnConsultar.setEnabled(true);
+        btnInserir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        
+        txtRegFuncional.requestFocus();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         int x;
-        for (x = 0; x < atendente.size(); x++) {
-            if (atendente.get(x) instanceof Atendente) {
-                if (((Atendente) atendente.get(x)).getRegFunc().equals(txtRegFuncional.getText())) {
+        for (x = 0; x < cadastro.size(); x++) {
+            if (cadastro.get(x) instanceof Atendente) {
+                if (((Atendente) cadastro.get(x)).getRegFunc().equals(txtRegFuncional.getText())) {
                     break;
                 }
             }
         }
 
-        if (x < atendente.size()) {
+        if (x < cadastro.size()) {
             posAtendente = x; //localizou o objeto Hospede no ArrayList
         } else {
             posAtendente = -1;//não localizou o objeto Hospede no ArrayList
         }
 
         if (posAtendente >= 0) {
+            txtRegFuncional.setText(cadastro.get(posAtendente).getRegFunc());
+            txtNome.setText(cadastro.get(posAtendente).getNome());
+            txtEndereco.setText(cadastro.get(posAtendente).getEndereco());
+            txtTelefone.setText(cadastro.get(posAtendente).getTelefone());
+            
+            switch(cadastro.get(posAtendente).getTurno()) {
+                case "M":
+                    rdbManha.setSelected(true);
+                    break;
+                case "T":
+                    rdbTarde.setSelected(true);
+                    break;
+                default:
+                    rdbNoite.setSelected(true);
+                    break;
+            }
+            
             btnConsultar.setEnabled(false);
             btnInserir.setEnabled(false);
             btnAlterar.setEnabled(true);
@@ -271,20 +330,22 @@ public class GuiAtendente extends javax.swing.JFrame {
             btnInserir.setEnabled(true);
             btnAlterar.setEnabled(false);
             btnExcluir.setEnabled(false);
-            txtNome.requestFocus();
         }
         
+        txtRegFuncional.setEnabled(false);
         txtNome.setEnabled(true);
         txtEndereco.setEnabled(true);
-        txtTelefone.setEnabled(true);
         txtTelefone.setEnabled(true);
         pnlTurno.setEnabled(true);
         rdbManha.setEnabled(true);
         rdbNoite.setEnabled(true);
         rdbTarde.setEnabled(true);
+        
+        txtNome.requestFocus();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        String turno = "";
         at = new Atendente(txtRegFuncional.getText(),
                 txtNome.getText()
         );
@@ -292,12 +353,17 @@ public class GuiAtendente extends javax.swing.JFrame {
         ((Atendente) at).setTelefone((txtTelefone.getText()));
         
         if (rdbManha.isSelected()) {
-            ((Atendente) at).setTurno("M");
+            turno = "M";
         } else if (rdbTarde.isSelected()) {
+            turno = "T";
             ((Atendente) at).setTurno("T");
         } else {
-            ((Atendente) at).setTurno("N");
+            turno = "N";
         }
+        
+        ((Atendente) at).setTurno(turno);
+        
+        cadastro.add(at);
 
         txtRegFuncional.setText(null);
         txtNome.setText(null);
@@ -318,7 +384,38 @@ public class GuiAtendente extends javax.swing.JFrame {
         rdbManha.setEnabled(false);
         rdbTarde.setEnabled(false);
         rdbNoite.setEnabled(false);
+        
+        txtRegFuncional.requestFocus();
     }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if (posAtendente >= 0) {
+            cadastro.remove(posAtendente);
+            posAtendente = -1;
+        }
+        
+        txtRegFuncional.setText(null);
+        txtNome.setText(null);
+        txtEndereco.setText(null);
+        txtTelefone.setText(null);
+        rdbManha.setSelected(true);
+
+        btnConsultar.setEnabled(true);
+        btnInserir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+
+        txtRegFuncional.setEnabled(true);
+        txtNome.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        pnlTurno.setEnabled(false);
+        rdbManha.setEnabled(false);
+        rdbTarde.setEnabled(false);
+        rdbNoite.setEnabled(false);
+        
+        txtRegFuncional.requestFocus();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,7 +442,7 @@ public class GuiAtendente extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
     
-    private ArrayList<Atendente> atendente;
+    private ArrayList<Atendente> cadastro;
     private Atendente at = null;
     private int posAtendente;
 }
