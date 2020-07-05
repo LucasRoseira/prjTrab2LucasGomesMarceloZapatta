@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author roseira && zapatta
+ * @author Lucas Roseira && Marcelo Zapatta
  */
 public class Atendente extends Pessoa {
 

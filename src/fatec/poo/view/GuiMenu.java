@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author roseira && zapatta
+ * @author Lucas Roseira && Marcelo Zapatta
  */
 public class GuiMenu extends javax.swing.JFrame {
 

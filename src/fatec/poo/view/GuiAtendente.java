@@ -12,7 +12,7 @@ import javax.swing.ButtonGroup;
 
 /**
  *
- * @author roseira && zapatta
+ * @author Lucas Roseira && Marcelo Zapatta
  */
 public class GuiAtendente extends javax.swing.JFrame {
 
@@ -23,7 +23,7 @@ public class GuiAtendente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cadastro = c;
-        
+
         bgpTurno.add(rdbManha);
         bgpTurno.add(rdbTarde);
         bgpTurno.add(rdbNoite);
@@ -248,28 +248,28 @@ public class GuiAtendente extends javax.swing.JFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         String turno = "";
-        
+
         txtRegFuncional.setEnabled(false);
         cadastro.get(posAtendente).setNome(txtNome.getText());
         cadastro.get(posAtendente).setEndereco(txtEndereco.getText());
         cadastro.get(posAtendente).setTelefone(txtTelefone.getText());
-        
+
         if (rdbManha.isSelected()) {
             turno = "M";
-        } else if (rdbTarde.isSelected()){
+        } else if (rdbTarde.isSelected()) {
             turno = "T";
         } else {
             turno = "N";
         }
-        
+
         cadastro.get(posAtendente).setTurno(turno);
-        
+
         txtRegFuncional.setText(null);
         txtNome.setText(null);
         txtEndereco.setText(null);
         txtTelefone.setText(null);
         rdbManha.setSelected(true);
-        
+
         txtRegFuncional.setEnabled(true);
         txtNome.setEnabled(false);
         txtEndereco.setEnabled(false);
@@ -278,12 +278,12 @@ public class GuiAtendente extends javax.swing.JFrame {
         rdbManha.setEnabled(false);
         rdbTarde.setEnabled(false);
         rdbNoite.setEnabled(false);
-        
+
         btnConsultar.setEnabled(true);
         btnInserir.setEnabled(false);
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
-        
+
         txtRegFuncional.requestFocus();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
@@ -298,9 +298,9 @@ public class GuiAtendente extends javax.swing.JFrame {
         }
 
         if (x < cadastro.size()) {
-            posAtendente = x; //localizou o objeto Hospede no ArrayList
+            posAtendente = x; //localizou o objeto Atendente no ArrayList
         } else {
-            posAtendente = -1;//não localizou o objeto Hospede no ArrayList
+            posAtendente = -1;//não localizou o objeto Atendente no ArrayList
         }
 
         if (posAtendente >= 0) {
@@ -308,8 +308,8 @@ public class GuiAtendente extends javax.swing.JFrame {
             txtNome.setText(cadastro.get(posAtendente).getNome());
             txtEndereco.setText(cadastro.get(posAtendente).getEndereco());
             txtTelefone.setText(cadastro.get(posAtendente).getTelefone());
-            
-            switch(cadastro.get(posAtendente).getTurno()) {
+
+            switch (cadastro.get(posAtendente).getTurno()) {
                 case "M":
                     rdbManha.setSelected(true);
                     break;
@@ -320,7 +320,7 @@ public class GuiAtendente extends javax.swing.JFrame {
                     rdbNoite.setSelected(true);
                     break;
             }
-            
+
             btnConsultar.setEnabled(false);
             btnInserir.setEnabled(false);
             btnAlterar.setEnabled(true);
@@ -331,7 +331,7 @@ public class GuiAtendente extends javax.swing.JFrame {
             btnAlterar.setEnabled(false);
             btnExcluir.setEnabled(false);
         }
-        
+
         txtRegFuncional.setEnabled(false);
         txtNome.setEnabled(true);
         txtEndereco.setEnabled(true);
@@ -340,7 +340,7 @@ public class GuiAtendente extends javax.swing.JFrame {
         rdbManha.setEnabled(true);
         rdbNoite.setEnabled(true);
         rdbTarde.setEnabled(true);
-        
+
         txtNome.requestFocus();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -351,7 +351,7 @@ public class GuiAtendente extends javax.swing.JFrame {
         );
         ((Atendente) at).setEndereco((txtEndereco.getText()));
         ((Atendente) at).setTelefone((txtTelefone.getText()));
-        
+
         if (rdbManha.isSelected()) {
             turno = "M";
         } else if (rdbTarde.isSelected()) {
@@ -360,9 +360,9 @@ public class GuiAtendente extends javax.swing.JFrame {
         } else {
             turno = "N";
         }
-        
+
         ((Atendente) at).setTurno(turno);
-        
+
         cadastro.add(at);
 
         txtRegFuncional.setText(null);
@@ -384,7 +384,7 @@ public class GuiAtendente extends javax.swing.JFrame {
         rdbManha.setEnabled(false);
         rdbTarde.setEnabled(false);
         rdbNoite.setEnabled(false);
-        
+
         txtRegFuncional.requestFocus();
     }//GEN-LAST:event_btnInserirActionPerformed
 
@@ -393,7 +393,7 @@ public class GuiAtendente extends javax.swing.JFrame {
             cadastro.remove(posAtendente);
             posAtendente = -1;
         }
-        
+
         txtRegFuncional.setText(null);
         txtNome.setText(null);
         txtEndereco.setText(null);
@@ -413,7 +413,7 @@ public class GuiAtendente extends javax.swing.JFrame {
         rdbManha.setEnabled(false);
         rdbTarde.setEnabled(false);
         rdbNoite.setEnabled(false);
-        
+
         txtRegFuncional.requestFocus();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -441,7 +441,7 @@ public class GuiAtendente extends javax.swing.JFrame {
     private javax.swing.JTextField txtRegFuncional;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
-    
+
     private ArrayList<Atendente> cadastro;
     private Atendente at = null;
     private int posAtendente;

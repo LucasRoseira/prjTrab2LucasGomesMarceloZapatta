@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author roseira && zapatta
+ * @author Lucas Roseira && Marcelo Zapatta
  */
 public class GuiHospede extends javax.swing.JFrame {
 
@@ -318,7 +318,7 @@ public class GuiHospede extends javax.swing.JFrame {
         txtEndereco.setText(null);
         txtTelefone.setText(null);
         txtTaxaDesconto.setText(null);
-        
+
         btnConsultar.setEnabled(true);
         btnInserir.setEnabled(false);
         btnAlterar.setEnabled(false);
@@ -328,7 +328,7 @@ public class GuiHospede extends javax.swing.JFrame {
         txtEndereco.setEnabled(false);
         txtTelefone.setEnabled(false);
         txtTaxaDesconto.setEnabled(false);
-        
+
         txtCPF.requestFocus();
     }//GEN-LAST:event_btnExcluirActionPerformed
 

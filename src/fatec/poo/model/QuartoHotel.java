@@ -7,7 +7,7 @@ package fatec.poo.model;
 
 /**
  *
- * @author roseira && zapatta
+ * @author Lucas Roseira && Marcelo Zapatta
  */
 public class QuartoHotel {
 
@@ -16,7 +16,7 @@ public class QuartoHotel {
     private final double valorDiaria;
     private boolean situacao;
     private String dataEntrada;
-    
+
     // Não esta presente no diagrama apenas na GUI
     private String dataSaida;
     private double totalFaturado;
@@ -69,15 +69,15 @@ public class QuartoHotel {
     public void setAtendente(Atendente atendente) {
         this.atendente = atendente;
     }
-    
+
     /* Método Reservar
      * @params Hospede hospede, Atendente atendente
      * Define a situação do quarto para ocupado(true)
      * Associação binária bidirecional entre Hospede <-> QuartoHotel
      * Associação binária bidirecional entre Atendente <-> QuartoHotel
-    */
+     */
     public void reservar(Hospede hospede, Atendente atendente) {
-        this.situacao = true;
+        this.situacao = false;
         this.hospede.setQuartoHotel(this);
         atendente.addQuartoHotel(this);
         // TODO reservar
@@ -93,7 +93,7 @@ public class QuartoHotel {
      * Calcula o valor da hospedagem aplicando o desconto
      * Adiciona o valor da hospedagem no total de faturamento do quarto
      * @return double valorHospedagem
-    */
+     */
     public void liberar(int quantidadeDeDias, double taxaDesconto) {
         this.situacao = false;
         this.dataEntrada = null;

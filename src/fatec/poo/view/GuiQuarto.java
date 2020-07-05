@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author roseira && zapatta
+ * @author Lucas Roseira && Marcelo Zapatta
  */
 public class GuiQuarto extends javax.swing.JFrame {
 
@@ -144,9 +144,10 @@ public class GuiQuarto extends javax.swing.JFrame {
             btnInserir.setEnabled(false);
         } else {
             txtNumQuarto.setEnabled(true);
+            txtNumQuarto.requestFocus();
             txtValorDiaria.setText(null);
             txtValorDiaria.setEnabled(true);
-            
+
             btnConsultar.setEnabled(false);
             btnInserir.setEnabled(true);
         }
@@ -163,9 +164,10 @@ public class GuiQuarto extends javax.swing.JFrame {
         hotel.add(hot);
 
         txtNumQuarto.setText(null);
+        txtNumQuarto.requestFocus();
         txtValorDiaria.setText(null);
         txtValorDiaria.setEnabled(false);
-        
+
         btnConsultar.setEnabled(true);
         btnInserir.setEnabled(false);
     }//GEN-LAST:event_btnInserirActionPerformed
