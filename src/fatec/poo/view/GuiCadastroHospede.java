@@ -213,8 +213,6 @@ public class GuiCadastroHospede extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
-
         int x;
         for (x = 0; x < hospede.size(); x++) {
             if (hospede.get(x) instanceof Hospede) {
@@ -256,7 +254,6 @@ public class GuiCadastroHospede extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-        // TODO add your handling code here:
         h = new Hospede(txtCPF.getText(),
                 txtNome.getText()
         );

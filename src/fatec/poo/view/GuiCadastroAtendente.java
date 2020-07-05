@@ -121,6 +121,11 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
         );
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
@@ -139,6 +144,11 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
 
         btnInserir.setText("Inserir");
         btnInserir.setEnabled(false);
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
@@ -228,6 +238,75 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        int x;
+        for (x = 0; x < atendente.size(); x++) {
+            if (atendente.get(x) instanceof Atendente) {
+                if (((Atendente) atendente.get(x)).getRegFunc().equals(txtRegFuncional.getText())) {
+                    break;
+                }
+            }
+        }
+
+        if (x < atendente.size()) {
+            posAtendente = x; //localizou o objeto Hospede no ArrayList
+        } else {
+            posAtendente = -1;//não localizou o objeto Hospede no ArrayList
+        }
+
+        if (posAtendente >= 0) {
+            btnConsultar.setEnabled(false);
+            btnInserir.setEnabled(false);
+            btnAlterar.setEnabled(true);
+            btnExcluir.setEnabled(true);
+        } else {
+            btnConsultar.setEnabled(false);
+            btnInserir.setEnabled(true);
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+            txtNome.requestFocus();
+        }
+        
+        txtNome.setEnabled(true);
+        txtEndereco.setEnabled(true);
+        txtTelefone.setEnabled(true);
+        txtTelefone.setEnabled(true);
+        pnlTurno.setEnabled(true);
+        rdbManha.setEnabled(true);
+        rdbNoite.setEnabled(true);
+        rdbTarde.setEnabled(true);
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        at = new Atendente(txtRegFuncional.getText(),
+                txtNome.getText()
+        );
+        ((Atendente) at).setEndereco((txtEndereco.getText()));
+        ((Atendente) at).setTelefone((txtTelefone.getText()));
+        // ((Atendente) at).setTurno((pnlTurno.get
+        ((Atendente) at).setTurno(Double.parseDouble(txtTaxaDesconto.getText()));
+
+        hospede.add((Hospede) h);
+
+        txtCPF.setText(null);
+        txtNome.setText(null);
+        txtEndereco.setText(null);
+        txtTaxaDesconto.setText(null);
+        txtTelefone.setText(null);
+
+        btnConsultar.setEnabled(true);
+        btnInserir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+
+        txtCPF.setEnabled(true);
+        txtNome.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtTaxaDesconto.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        txtCPF.requestFocus();
+    }//GEN-LAST:event_btnInserirActionPerformed
 
     /**
      * @param args the command line arguments
