@@ -12,12 +12,12 @@ import java.util.ArrayList;
  *
  * @author roseira && zapatta
  */
-public class GuiCadastroQuarto extends javax.swing.JFrame {
+public class GuiQuarto extends javax.swing.JFrame {
 
     /**
      * Creates new form GuiCadastroQuarto
      */
-    public GuiCadastroQuarto(ArrayList<QuartoHotel> h) {
+    public GuiQuarto(ArrayList<QuartoHotel> h) {
         initComponents();
         this.setLocationRelativeTo(null);
         hotel = h;

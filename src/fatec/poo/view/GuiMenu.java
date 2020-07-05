@@ -101,17 +101,17 @@ public class GuiMenu extends javax.swing.JFrame {
 
     private void jMenuItemCadastroQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroQuartoActionPerformed
         // TODO add your handling code here:
-        new GuiCadastroQuarto(hotel).setVisible(true);
+        new GuiQuarto(hotel).setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroQuartoActionPerformed
 
     private void jMenuItemCadastroAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroAtendenteActionPerformed
         // TODO add your handling code here:
-        new GuiCadastroAtendente(atendentes).setVisible(true);
+        new GuiAtendente(atendentes).setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroAtendenteActionPerformed
 
     private void jMenuItemCadastroHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroHospedeActionPerformed
         // TODO add your handling code here:
-        new GuiCadastroHospede(hospedes).setVisible(true);
+        new GuiHospede(hospedes).setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroHospedeActionPerformed
 
     private void jMenuItemReservarLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReservarLiberarActionPerformed

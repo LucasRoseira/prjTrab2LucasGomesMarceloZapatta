@@ -6,21 +6,27 @@
 package fatec.poo.view;
 
 import fatec.poo.model.Atendente;
+import java.awt.Component;
 import java.util.ArrayList;
+import javax.swing.ButtonGroup;
 
 /**
  *
  * @author roseira && zapatta
  */
-public class GuiCadastroAtendente extends javax.swing.JFrame {
+public class GuiAtendente extends javax.swing.JFrame {
 
     /**
      * Creates new form GuiCadastroCliente
      */
-    public GuiCadastroAtendente(ArrayList<Atendente> at) {
+    public GuiAtendente(ArrayList<Atendente> at) {
         initComponents();
         this.setLocationRelativeTo(null);
         atendente = at;
+        
+        bgpTurno.add(rdbManha);
+        bgpTurno.add(rdbTarde);
+        bgpTurno.add(rdbNoite);
     }
 
     /**
@@ -32,7 +38,7 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        bgpTurno = new javax.swing.ButtonGroup();
         lblRegFuncional = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         lblEndereco = new javax.swing.JLabel();
@@ -284,28 +290,34 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
         );
         ((Atendente) at).setEndereco((txtEndereco.getText()));
         ((Atendente) at).setTelefone((txtTelefone.getText()));
-        // ((Atendente) at).setTurno((pnlTurno.get
-        ((Atendente) at).setTurno(Double.parseDouble(txtTaxaDesconto.getText()));
+        
+        if (rdbManha.isSelected()) {
+            ((Atendente) at).setTurno("M");
+        } else if (rdbTarde.isSelected()) {
+            ((Atendente) at).setTurno("T");
+        } else {
+            ((Atendente) at).setTurno("N");
+        }
 
-        hospede.add((Hospede) h);
-
-        txtCPF.setText(null);
+        txtRegFuncional.setText(null);
         txtNome.setText(null);
         txtEndereco.setText(null);
-        txtTaxaDesconto.setText(null);
         txtTelefone.setText(null);
+        rdbManha.setSelected(true);
 
         btnConsultar.setEnabled(true);
         btnInserir.setEnabled(false);
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
 
-        txtCPF.setEnabled(true);
+        txtRegFuncional.setEnabled(true);
         txtNome.setEnabled(false);
         txtEndereco.setEnabled(false);
-        txtTaxaDesconto.setEnabled(false);
         txtTelefone.setEnabled(false);
-        txtCPF.requestFocus();
+        pnlTurno.setEnabled(false);
+        rdbManha.setEnabled(false);
+        rdbTarde.setEnabled(false);
+        rdbNoite.setEnabled(false);
     }//GEN-LAST:event_btnInserirActionPerformed
 
     /**
@@ -313,12 +325,12 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgpTurno;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnInserir;
     private javax.swing.JButton btnSair;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblRegFuncional;
@@ -332,6 +344,8 @@ public class GuiCadastroAtendente extends javax.swing.JFrame {
     private javax.swing.JTextField txtRegFuncional;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+    
     private ArrayList<Atendente> atendente;
+    private Atendente at = null;
     private int posAtendente;
 }

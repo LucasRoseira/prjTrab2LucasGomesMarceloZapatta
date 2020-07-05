@@ -13,12 +13,12 @@ import java.util.ArrayList;
  *
  * @author roseira && zapatta
  */
-public class GuiCadastroHospede extends javax.swing.JFrame {
+public class GuiHospede extends javax.swing.JFrame {
 
     /**
      * Creates new form GuiCadastroCliente
      */
-    public GuiCadastroHospede(ArrayList<Hospede> h) {
+    public GuiHospede(ArrayList<Hospede> h) {
         initComponents();
         this.setLocationRelativeTo(null);
         hospede = h;
@@ -225,7 +225,7 @@ public class GuiCadastroHospede extends javax.swing.JFrame {
         if (x < hospede.size()) {
             posHospede = x; //localizou o objeto Hospede no ArrayList
         } else {
-            posHospede = -1;//não localizou o objeto Hospede no ArrayList
+            posHospede = -1; //não localizou o objeto Hospede no ArrayList
         }
 
         if (posHospede >= 0) {
