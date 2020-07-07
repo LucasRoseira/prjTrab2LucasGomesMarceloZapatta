@@ -8,7 +8,9 @@ package fatec.poo.view;
 import fatec.poo.model.Atendente;
 import fatec.poo.model.Hospede;
 import fatec.poo.model.QuartoHotel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -116,6 +118,11 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
         btnLiberar.setText("Liberar");
         btnLiberar.setEnabled(false);
+        btnLiberar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLiberarActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -402,6 +409,29 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
         lblNomeHospede.setText(null);
         btnPesquisarAtendente.setEnabled(true);
     }//GEN-LAST:event_btnReservarActionPerformed
+
+    private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar data1 = Calendar.getInstance();
+        Calendar data2 = Calendar.getInstance();
+        int dias;
+        double valorAPagar;
+        
+        try {                //converte uma string no dd/mm/aaaa para 
+                            //um objeto da classe Date
+            data1.setTime(sdf.parse(txtDataEntrada.getText()));
+            data2.setTime(sdf.parse(txtDataSaida.getText()));
+        } catch (java.text.ParseException e ) { }
+        
+       dias = data2.get(Calendar.DAY_OF_YEAR) - data1.get(Calendar.DAY_OF_YEAR);
+       
+       valorAPagar = dias * quartoHotel.get(posQuartoHotel).getValorDiaria()
+               * (quartoHotel.get(posQuartoHotel).getHospede().getTxDesconto() / 100);
+       
+       // TODO FORMATAR VALOR
+       
+       lblValorAPagar.setText(String.valueOf(valorAPagar));
+    }//GEN-LAST:event_btnLiberarActionPerformed
 
     /**
      * @param args the command line arguments
