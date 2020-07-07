@@ -82,10 +82,10 @@ public class QuartoHotel {
      */
     public void reservar(Hospede hospede, Atendente atendente) {
         this.situacao = true;
-        
+
         hospede.setQuartoHotel(this);
         atendente.addQuartoHotel(this);
-        
+
         this.setAtendente(atendente);
         this.setHospede(hospede);
     }
@@ -101,10 +101,16 @@ public class QuartoHotel {
      * Adiciona o valor da hospedagem no total de faturamento do quarto
      * @return double valorHospedagem
      */
-    public void liberar(int quantidadeDeDias, double taxaDesconto) {
+    public double liberar(int quantidadeDeDias, double taxaDesconto) {
         this.situacao = false;
         this.dataEntrada = null;
         // TODO liberar
-    }
+        hospede.setQuartoHotel(null);
+        atendente.addQuartoHotel(null);
 
+        this.setAtendente(null);
+        this.setHospede(null);
+        totalFaturado = ((quantidadeDeDias * valorDiaria * (taxaDesconto) / 100));
+        return totalFaturado;
+    }
 }

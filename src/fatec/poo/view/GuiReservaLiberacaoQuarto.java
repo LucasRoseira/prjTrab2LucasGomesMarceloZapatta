@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author roseira && zapatta
+ * @author Lucas Roseira && Marcelo Zapatta
  */
 public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
@@ -299,10 +299,10 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
         if (posAtendente >= 0) {
             lblNomeAtendente.setText(atendente.get(posAtendente).getNome());
-            
+
             txtRegFuncional.setEnabled(false);
             btnPesquisarAtendente.setEnabled(false);
-            
+
             txtCpfHospede.setEnabled(true);
             btnPesquisarHospede.setEnabled(true);
             txtCpfHospede.requestFocus();
@@ -313,7 +313,7 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
     private void btnPesquisarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarHospedeActionPerformed
         int x;
-        
+
         for (x = 0; x < hospede.size(); x++) {
             if (hospede.get(x) instanceof Hospede) {
                 if (((Hospede) hospede.get(x)).getCpf().equals(txtCpfHospede.getText())) {
@@ -330,15 +330,15 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
         if (posHospede >= 0) {
             lblNomeHospede.setText(hospede.get(posHospede).getNome());
-            
+
             txtCpfHospede.setEnabled(false);
             btnPesquisarHospede.setEnabled(false);
-            
+
             if (hospede.get(posHospede).getQuartoHotel() instanceof QuartoHotel) {
                 txtNumeroQuarto.setText(String.valueOf(hospede.get(posHospede).getQuartoHotel().getNumQuarto()));
                 txtDataEntrada.setText(hospede.get(posHospede).getQuartoHotel().getDataEntrada());
                 lblSituacao.setText("Ocupado");
-                
+
                 txtDataSaida.setEnabled(true);
                 txtDataSaida.requestFocus();
                 btnLiberar.setEnabled(true);
@@ -366,6 +366,7 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
         }
 
         if (x < quartoHotel.size()) {
+            lblSituacao.setText("Livre");
             posQuartoHotel = x; // localizou o objeto QuartoHotel no ArrayList
         } else {
             posQuartoHotel = -1; // não localizou o objeto QuartoHotel no ArrayList
@@ -394,20 +395,22 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
         QuartoHotel quartoHotelReserva = quartoHotel.get(posQuartoHotel);
         quartoHotelReserva.setDataEntrada(txtDataEntrada.getText());
         quartoHotelReserva.reservar((Hospede) hospede.get(posHospede), (Atendente) atendente.get(posAtendente));
-
+        lblSituacao.setText(null);
         btnReservar.setEnabled(false);
         txtDataEntrada.setEnabled(false);
         txtDataEntrada.setText(null);
-        
+
         txtRegFuncional.setEnabled(true);
-        
+
         txtRegFuncional.setText(null);
         txtCpfHospede.setText(null);
         txtNumeroQuarto.setText(null);
-        
+
         lblNomeAtendente.setText(null);
         lblNomeHospede.setText(null);
         btnPesquisarAtendente.setEnabled(true);
+
+        txtRegFuncional.requestFocus(true);
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
@@ -416,21 +419,27 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
         Calendar data2 = Calendar.getInstance();
         int dias;
         double valorAPagar;
-        
+        QuartoHotel quarto = quartoHotel.get(posQuartoHotel);
+
         try {                //converte uma string no dd/mm/aaaa para 
-                            //um objeto da classe Date
+            //um objeto da classe Date
             data1.setTime(sdf.parse(txtDataEntrada.getText()));
             data2.setTime(sdf.parse(txtDataSaida.getText()));
-        } catch (java.text.ParseException e ) { }
-        
-       dias = data2.get(Calendar.DAY_OF_YEAR) - data1.get(Calendar.DAY_OF_YEAR);
-       
-       valorAPagar = dias * quartoHotel.get(posQuartoHotel).getValorDiaria()
-               * (quartoHotel.get(posQuartoHotel).getHospede().getTxDesconto() / 100);
-       
-       // TODO FORMATAR VALOR
-       
-       lblValorAPagar.setText(String.valueOf(valorAPagar));
+        } catch (java.text.ParseException e) {
+        }
+
+        dias = data2.get(Calendar.DAY_OF_YEAR) - data1.get(Calendar.DAY_OF_YEAR);
+
+        //valorAPagar = dias * quartoHotel.get(posQuartoHotel).getValorDiaria()
+        //        * (quartoHotel.get(posQuartoHotel).getHospede().getTxDesconto() / 100);
+        // TODO FORMATAR VALOR
+        valorAPagar = quarto.liberar(dias, this.quartoHotel.get(posQuartoHotel).getHospede().getTxDesconto());
+        lblValorAPagar.setText(String.valueOf(valorAPagar));
+        lblSituacao.setText("Livre");
+        btnLiberar.setEnabled(false);
+        btnPesquisarAtendente.setEnabled(true);
+        txtRegFuncional.setEnabled(true);
+        txtRegFuncional.requestFocus(true);
     }//GEN-LAST:event_btnLiberarActionPerformed
 
     /**
