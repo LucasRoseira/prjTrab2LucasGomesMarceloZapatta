@@ -104,13 +104,15 @@ public class QuartoHotel {
     public double liberar(int quantidadeDeDias, double taxaDesconto) {
         this.situacao = false;
         this.dataEntrada = null;
-        // TODO liberar
+
         hospede.setQuartoHotel(null);
         atendente.addQuartoHotel(null);
 
         this.setAtendente(null);
         this.setHospede(null);
-        totalFaturado = ((quantidadeDeDias * valorDiaria * (taxaDesconto) / 100));
+        
+        totalFaturado = quantidadeDeDias * valorDiaria * taxaDesconto / 100;
+
         return totalFaturado;
     }
 }

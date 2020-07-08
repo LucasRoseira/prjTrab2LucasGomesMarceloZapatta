@@ -309,6 +309,13 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Atendente não cadastrado");
         }
+        
+        txtCpfHospede.setText(null);
+        txtDataEntrada.setText(null);
+        txtDataSaida.setText(null);
+        txtNumeroQuarto.setText(null);
+        lblValorAPagar.setText(null);
+        lblSituacao.setText(null);
     }//GEN-LAST:event_btnPesquisarAtendenteActionPerformed
 
     private void btnPesquisarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarHospedeActionPerformed
@@ -342,8 +349,6 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
                 txtDataSaida.setEnabled(true);
                 txtDataSaida.requestFocus();
                 btnLiberar.setEnabled(true);
-
-                txtNumeroQuarto.requestFocus();
             } else {
                 txtNumeroQuarto.setEnabled(true);
                 btnPesquisarQuarto.setEnabled(true);
@@ -415,31 +420,36 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
     private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
         Calendar data1 = Calendar.getInstance();
         Calendar data2 = Calendar.getInstance();
-        int dias;
+        
+        int quantidadeDias;
         double valorAPagar;
+        
         QuartoHotel quarto = quartoHotel.get(posQuartoHotel);
 
-        try {                //converte uma string no dd/mm/aaaa para 
-            //um objeto da classe Date
+        try {                
+            // Converte uma string no dd/mm/aaaa para 
+            // um objeto da classe Calendar
             data1.setTime(sdf.parse(txtDataEntrada.getText()));
             data2.setTime(sdf.parse(txtDataSaida.getText()));
         } catch (java.text.ParseException e) {
+            JOptionPane.showMessageDialog(this, "Data inválida.");
         }
 
-        dias = data2.get(Calendar.DAY_OF_YEAR) - data1.get(Calendar.DAY_OF_YEAR);
+        quantidadeDias = data2.get(Calendar.DAY_OF_YEAR) - data1.get(Calendar.DAY_OF_YEAR);
 
-        //valorAPagar = dias * quartoHotel.get(posQuartoHotel).getValorDiaria()
-        //        * (quartoHotel.get(posQuartoHotel).getHospede().getTxDesconto() / 100);
-        // TODO FORMATAR VALOR
-        valorAPagar = quarto.liberar(dias, this.quartoHotel.get(posQuartoHotel).getHospede().getTxDesconto());
+        valorAPagar = quarto.liberar(quantidadeDias, hospede.get(posHospede).getTxDesconto());
+        
         lblValorAPagar.setText(String.valueOf(valorAPagar));
+        
         lblSituacao.setText("Livre");
         btnLiberar.setEnabled(false);
         btnPesquisarAtendente.setEnabled(true);
         txtRegFuncional.setEnabled(true);
         txtRegFuncional.requestFocus(true);
+        txtDataSaida.setEnabled(false);
     }//GEN-LAST:event_btnLiberarActionPerformed
 
     /**
