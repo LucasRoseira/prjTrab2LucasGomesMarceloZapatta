@@ -8,6 +8,7 @@ package fatec.poo.view;
 import fatec.poo.model.Atendente;
 import fatec.poo.model.Hospede;
 import fatec.poo.model.QuartoHotel;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -400,6 +401,7 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
         QuartoHotel quartoHotelReserva = quartoHotel.get(posQuartoHotel);
         quartoHotelReserva.setDataEntrada(txtDataEntrada.getText());
         quartoHotelReserva.reservar((Hospede) hospede.get(posHospede), (Atendente) atendente.get(posAtendente));
+        
         lblSituacao.setText(null);
         btnReservar.setEnabled(false);
         txtDataEntrada.setEnabled(false);
@@ -420,6 +422,7 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
     private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        DecimalFormat df = new DecimalFormat("#,##0.00");
         
         Calendar data1 = Calendar.getInstance();
         Calendar data2 = Calendar.getInstance();
@@ -442,7 +445,7 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
 
         valorAPagar = quarto.liberar(quantidadeDias, hospede.get(posHospede).getTxDesconto());
         
-        lblValorAPagar.setText(String.valueOf(valorAPagar));
+        lblValorAPagar.setText(df.format(valorAPagar));
         
         lblSituacao.setText("Livre");
         btnLiberar.setEnabled(false);

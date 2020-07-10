@@ -6,6 +6,7 @@
 package fatec.poo.view;
 
 import fatec.poo.model.QuartoHotel;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -120,8 +121,9 @@ public class GuiQuarto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
+        DecimalFormat df = new DecimalFormat("#,##0.00");
         int x;
+        
         for (x = 0; x < hotel.size(); x++) {
             if (hotel.get(x) instanceof QuartoHotel
                     && hotel.get(x).getNumQuarto()
@@ -137,7 +139,7 @@ public class GuiQuarto extends javax.swing.JFrame {
         }
 
         if (posQuarto >= 0) {
-            txtValorDiaria.setText(String.valueOf(hotel.get(posQuarto).getValorDiaria()));
+            txtValorDiaria.setText(df.format(hotel.get(posQuarto).getValorDiaria()));
             
             txtNumQuarto.requestFocus();
             
