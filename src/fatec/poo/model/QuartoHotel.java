@@ -16,9 +16,6 @@ public class QuartoHotel {
     private final double valorDiaria;
     private boolean situacao;
     private String dataEntrada;
-
-    // Não esta presente no diagrama apenas na GUI
-    private String dataSaida;
     private double totalFaturado;
     private Hospede hospede;
     private Atendente atendente;
