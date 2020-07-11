@@ -317,6 +317,7 @@ public class GuiReservaLiberacaoQuarto extends javax.swing.JFrame {
         txtNumeroQuarto.setText(null);
         lblValorAPagar.setText(null);
         lblSituacao.setText(null);
+        lblNomeHospede.setText(null);
     }//GEN-LAST:event_btnPesquisarAtendenteActionPerformed
 
     private void btnPesquisarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarHospedeActionPerformed
